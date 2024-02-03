@@ -1,5 +1,6 @@
 /* Вариант 11 */
 
+/* man(X) - X является мужчиной */
 man(voeneg).
 man(ratibor).
 man(boguslav).
@@ -10,6 +11,7 @@ man(dobrozhir).
 man(bogomil).
 man(zlatomir).
 
+/* woman(X) - X является женщиной */
 woman(goluba).
 woman(lubomila).
 woman(bratislava).
@@ -20,6 +22,7 @@ woman(broneslava).
 woman(veselina).
 woman(zdislava).
 
+/* parent(X, Y) - X является родителем Y */
 parent(voeneg,ratibor).
 parent(voeneg,bratislava).
 parent(voeneg,velerad).
@@ -50,11 +53,14 @@ parent(duhovlad,zlatomir).
 parent(zhdana,zdislava).
 parent(zhdana,zlatomir).
 
-/* сынок */
+/* son(X, Y) - X является сыном Y */
 son(X, Y):- man(X), parent(X, Y).
 
-son(X):- son(X, Y), print(Y), nl, fail.
+/* son(X) - найти сына родителя X */
+son(X):- son(Y, X), print(Y), nl, fail.
 
+/* husband(X, Y) - является ли X женой Y */
 husband(X, Y):- woman(X), man(Y), parent(X, Z), parent(Y, Z).
 
+/* husband(X) - найти мужа жены X */
 husband(X):- husband(X, Y), print(Y), nl, fail.
